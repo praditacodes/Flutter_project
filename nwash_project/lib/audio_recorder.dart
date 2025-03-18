@@ -18,7 +18,7 @@ class AudioRecorderService {
 
   // Initialize the recorder
   Future<void> init() async {
-    // await _audioRecorder!.openAudioSession();
+    await _audioRecorder!.openRecorder();
     await _requestPermissions();
   }
 
@@ -51,6 +51,6 @@ class AudioRecorderService {
 
   // Release the audio recorder
   Future<void> release() async {
-    // await _audioRecorder!.closeAudioSession();
+    await _audioRecorder!.closeRecorder();
   }
 }
