@@ -79,37 +79,39 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(title: Text('NWASH Project')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: _getCurrentLocation,
-              child: Text('Get Current Location'),
-            ),
-            SizedBox(height: 20),
-            Text(
-              _currentPosition != null
-                  ? 'Lat: ${_currentPosition!.latitude}, Long: ${_currentPosition!.longitude}'
-                  : 'Location not available',
-              style: TextStyle(fontSize: 18),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _capturePhoto,
-              child: Text('Capture Photo'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _toggleRecording,
-              child: Text(audioRecorderService.isRecording
-                  ? 'Stop Recording'
-                  : 'Start Recording'),
-            ),
-            if (_image != null) ...[
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: _getCurrentLocation,
+                child: Text('Get Current Location'),
+              ),
               SizedBox(height: 20),
-              Image.file(File(_image!.path)),
+              Text(
+                _currentPosition != null
+                    ? 'Lat: ${_currentPosition!.latitude}, Long: ${_currentPosition!.longitude}'
+                    : 'Location not available',
+                style: TextStyle(fontSize: 18),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _capturePhoto,
+                child: Text('Capture Photo'),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _toggleRecording,
+                child: Text(audioRecorderService.isRecording
+                    ? 'Stop Recording'
+                    : 'Start Recording'),
+              ),
+              if (_image != null) ...[
+                SizedBox(height: 20),
+                Image.file(File(_image!.path)),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );
